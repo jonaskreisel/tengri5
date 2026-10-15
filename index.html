@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tengri.cz</title>
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Barevná paleta: Step, Nebe, Jurta */
+            --sky-blue: #2A7B9B;
+            --eternal-blue: #0D293E;
+            --steppe-green: #3D5A40;
+            --yurt-felt: #F4EEDC;
+            --yurt-shadow: #D8CEB0;
+            --wood-dark: #4A3320;
+            --wood-light: #8B5A2B;
+            --gold: #C5A059;
+            --text-dark: #23221F;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            /* Pozadí evokující propojení modrého nebe a zelené stepi */
+            background: fixed linear-gradient(145deg, var(--eternal-blue) 0%, var(--sky-blue) 40%, var(--steppe-green) 100%);
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- STYLIZACE JURTY (Hlavní kontejner) --- */
+        .yurt-container {
+            background-color: var(--yurt-felt);
+            max-width: 900px;
+            width: 100%;
+            /* Vytvoření kupole jurty nahoře */
+            border-radius: 180px 180px 15px 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 60px rgba(74, 51, 32, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 100px;
+        }
+
+        /* Shangyrak (Střešní otvor jurty vytvořený čistě přes CSS) */
+        .shangyrak-wrapper {
+            background: linear-gradient(to bottom, var(--wood-dark), var(--wood-light));
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 8px solid var(--wood-dark);
+            position: relative;
+        }
+
+        .shangyrak {
+            width: 120px;
+            height: 120px;
+            border: 12px solid var(--wood-dark);
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            background: radial-gradient(circle, var(--sky-blue) 0%, var(--eternal-blue) 100%);
+            position: relative;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Křížící se tyče v Shangyraku */
+        .shangyrak::before, .shangyrak::after {
+            content: '';
+            position: absolute;
+            background-color: var(--wood-dark);
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+        .shangyrak::before {
+            width: 100%;
+            height: 8px;
+            transform: rotate(45deg);
+        }
+        .shangyrak::after {
+            width: 100%;
+            height: 8px;
+            transform: rotate(-45deg);
+        }
+
+        h1.site-title {
+            font-family: 'Cinzel', serif;
+            color: var(--yurt-felt);
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            letter-spacing: 2px;
+        }
+
+        /* --- NAVIGACE --- */
+        nav {
+            background-color: var(--wood-dark);
+            padding: 15px 10px;
+            text-align: center;
+            border-bottom: 4px dashed var(--gold);
+        }
+
+        nav a {
+            color: var(--yurt-felt);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            margin: 5px 15px;
+            display: inline-block;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* --- OBSAHOVÉ SEKCE --- */
+        .content {
+            padding: 50px 8%;
+        }
+
+        section {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        /* Ozdobný oddělovač inspirovaný vázáním jurty */
+        section:not(:last-child)::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background: repeating-linear-gradient(90deg, var(--wood-light), var(--wood-light) 10px, var(--yurt-shadow) 10px, var(--yurt-shadow) 20px);
+            margin: 50px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--eternal-blue);
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--steppe-green);
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--eternal-blue);
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            list-style-type: none;
+        }
+
+        ul li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-left: 25px;
+        }
+
+        ul li::before {
+            content: '❖';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* --- MODLITBY (Karty) --- */
+        .prayer-card {
+            background: linear-gradient(to bottom right, #ffffff, var(--yurt-felt));
+            border-left: 5px solid var(--sky-blue);
+            border-right: 5px solid var(--sky-blue);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--eternal-blue);
+        }
+
+        .prayer-card p {
+            text-align: center;
+            margin-bottom: 0;
+            line-height: 1.8;
+        }
+
+        .prayer-card:nth-child(even) {
+            border-left: 5px solid var(--steppe-green);
+            border-right: 5px solid var(--steppe-green);
+        }
+
+        /* --- ODKAZY --- */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .links-container a {
+            display: block;
+            background-color: var(--wood-dark);
+            color: var(--yurt-felt);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        .links-container a:hover {
+            background-color: var(--steppe-green);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Specifické varování */
+        .warning-box {
+            background-color: rgba(197, 160, 89, 0.2);
+            border: 2px dashed var(--wood-light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        /* --- INTERAKTIVNÍ KOSMOLOGIE (STROM ŽIVOTA) --- */
+        .cosmos-tree-widget {
+            margin-top: 30px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: inset 0 0 20px rgba(74, 51, 32, 0.05);
+        }
+        .world-section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            text-align: center;
+            margin: 20px 0 10px 0;
+            padding: 8px;
+            border-radius: 6px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .world-upper { background: var(--sky-blue); }
+        .world-middle { background: var(--steppe-green); }
+        .world-lower { background: var(--wood-dark); }
+
+        .cosmos-node {
+            background: #fff;
+            border: 1px solid var(--yurt-shadow);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .cosmos-node-header {
+            padding: 12px 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--eternal-blue);
+            background: linear-gradient(to right, rgba(197,160,89,0.1), transparent);
+        }
+        .cosmos-node-header:hover {
+            background: rgba(197,160,89,0.2);
+        }
+        .cosmos-node-header .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--gold);
+            transition: transform 0.3s;
+        }
+        .cosmos-node.active .cosmos-node-header .toggle-icon {
+            transform: rotate(180deg);
+        }
+        .cosmos-node-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease;
+            padding: 0 18px;
+            background: #fff;
+            font-size: 0.95rem;
+        }
+        .cosmos-node.active .cosmos-node-content {
+            max-height: 500px;
+            padding: 15px 18px;
+        }
+        .cosmos-node-content p {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .cosmos-detail-label {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--steppe-green);
+            margin-top: 8px;
+        }
+
+        /* --- COOKIE LIŠTA --- */
+        #cookie-banner {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--eternal-blue);
+            color: var(--yurt-felt);
+            padding: 20px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            z-index: 9999;
+            transition: bottom 0.5s ease-in-out;
+            font-family: 'Lora', serif;
+            border-top: 3px solid var(--gold);
+        }
+
+        #cookie-banner.show {
+            bottom: 0;
+        }
+
+        .cookie-text {
+            flex: 1 1 60%;
+            margin-right: 20px;
+            font-size: 0.95rem;
+        }
+
+        .cookie-buttons {
+            flex: 1 1 30%;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .cookie-btn {
+            background-color: var(--steppe-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cookie-btn:hover {
+            background-color: var(--sky-blue);
+        }
+
+        .cookie-btn.reject {
+            background-color: transparent;
+            border: 1px solid var(--yurt-felt);
+        }
+
+        .cookie-btn.reject:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* --- TLAČÍTKO ZPĚT NAHORU --- */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--wood-dark);
+            color: var(--yurt-felt);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
+            z-index: 9998; /* Pod cookie lištou */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            text-decoration: none;
+        }
+        
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            background-color: var(--steppe-green);
+        }
+        
+        /* Upravení pozice tlačítka, pokud je zobrazena cookie lišta */
+        body.cookie-banner-active #back-to-top {
+            bottom: 120px; /* Upravte podle výšky cookie lišty */
+        }
+
+
+        /* --- RESPONZIVITA --- */
+        @media (max-width: 768px) {
+            .yurt-container {
+                border-radius: 100px 100px 10px 10px;
+                margin-top: 10px;
+            }
+            .content {
+                padding: 30px 5%;
+            }
+            h1.site-title {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .cookie-buttons {
+                justify-content: stretch;
+                width: 100%;
+            }
+            .cookie-btn {
+                flex: 1;
+                text-align: center;
+            }
+             body.cookie-banner-active #back-to-top {
+                bottom: 180px; /* Upravte podle výšky cookie lišty na mobilech */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="yurt-container">
+        
+        <header class="shangyrak-wrapper">
+            <div class="shangyrak"></div>
+            <h1 class="site-title">Tengri.cz</h1>
+        </header>
+
+        <nav>
+            <a href="#privitani">Přivítání</a>
+            <a href="#co-je-tengrismus">Co je tengrismus</a>
+            <a href="#tengri-a-umay">Tengri a Umay</a>
+            <a href="#tri-svety">Tři světy</a>
+            <a href="#duse">Duše</a>
+            <a href="#yersu">Yersu</a>
+            <a href="#praxe">Praxe</a>
+            <a href="#modlitby">Modlitby</a>
+            <a href="#kurz">Kurz</a>
+            <a href="#odkazy">Odkazy</a>
+            <a href="#obrazky">Obrázky</a>
+        </nav>
+
+        <main class="content">
+            
+            <section id="privitani">
+                <h2>Přivítání</h2>
+                <p>Vítejte pod Věčným modrým nebem.</p>
+                <p>Vítejte na stránkách Tengri.cz, které jsou věnovány jedné z nejstarších, a přesto stále živých duchovních tradic lidstva.</p>
+                <p>Tengrismus není náboženstvím svázaným dogmaty, knihami nebo zdmi chrámů. Je to filozofie svobody, která se zrodila v nekonečných středoasijských stepích, na vrcholcích Altaje a v hlubokých sibiřských tajgách. Je to cesta přirozené úcty, která nás učí, že vše kolem nás – každá hora, řeka, strom i zvíře – má svou vlastní duši a zaslouží si náš respekt.</p>
+                <h3>Proč jste zde správně?</h3>
+                <p>Ať už vás na tyto stránky přivedla touha po poznání historie kočovných kultur, zájem o autentický šamanismus, nebo prostě hledáte způsob, jak v dnešním zrychleném světě znovu nalézt ztracené spojení s přírodou, jste na správném místě. Tengrismus nabízí nadčasové odpovědi na otázky rovnováhy mezi člověkem, komunitou a vesmírem.</p>
+                <p>Vstupte dál, naslouchejte šepotu větru a objevte moudrost, která přetrvala tisíciletí. Nechť vás na vaší cestě provází síla a požehnání Věčného nebe!</p>
+            </section>
+
+            <section id="co-je-tengrismus">
+                <h2>Co je tengrismus</h2>
+                <p><strong>Tengrismus</strong> je prastará duchovní tradice a životní filozofie středoasijských kočovníků, která formovala vědomí národů jako byli Mongolové, Turci či Hunové. Nejedná se o náboženství v klasickém západním smyslu s pevnými dogmaty a svatými knihami, ale o organické propojení šamanismu, animismu a hluboké úcty k předkům.</p>
+                <p>Ústředním bodem celého systému je <strong>Tengri</strong> – Věčné modré nebe, které představuje nejvyšší, nepersonifikovanou vesmírnou sílu, tvořící a udržující vesmírný řád. Druhým klíčovým pilířem je posvátný vztah k Zemi a přírodě. Tengrismus vychází z přesvědčení, že vše kolem nás (hory, řeky, stromy i zvířata) má svého vlastního ducha a lidská bytost není pánem tvorstva, nýbrž pouhou součástí tohoto živého celku. Cílem lidského života je tak udržování neustálé harmonie mezi Nebe, Zemí a lidskou komunitou.</p>
+            </section>
+
+            <section id="tengri-a-umay">
+                <h2>Tengri a Umay</h2>
+                <p>V tengrismu představují Tengri a Umay dva základní, protikladné a přesto hluboce propojené kosmické principy. Jsou ekvivalentem otcovského a mateřského archetypu, skrze jejichž součinnost vzniká a drží pohromadě celý viditelný svět.</p>
+                
+                <h3>Tengri: Otcovské nebe</h3>
+                <p>Tengri (či Kök Tengri – Věčné modré nebe) je nejvyšší, mužský princip.</p>
+                <ul>
+                    <li><strong>Charakteristika:</strong> Nepředstavuje postavu s lidskou tváří, ale samotný prostor nebes, světlo a vesmírný řád. Je nehybný, vševědoucí a spravedlivý.</li>
+                    <li><strong>Role:</strong> Dává lidem a všem tvorům Kut (duchovní životní sílu, duši) a určuje osud celého světa. Je tím, kdo shora dohlíží na morální čistotu a rovnováhu.</li>
+                </ul>
+
+                <h3>Umay (Umay Ana): Mateřská země</h3>
+                <p>Umay (v překladu z prastarých turkických jazyků znamenající "lůno" nebo "placenta") je nejvyšší ženský, mateřský princip.</p>
+                <ul>
+                    <li><strong>Charakteristika:</strong> Na rozdíl od neosobního Tengriho bývá Umay v mýtech personifikována mnohem jasněji – často jako žena s křídly, zlatými vlasy či korunou, která sestupuje z nebes, aby pomáhala lidem.</li>
+                    <li><strong>Role:</strong> Je bohyní plodnosti, země, hojnosti a ochránkyní rodinného krbu. Má na starosti fyzické zrození. Zjednodušeně: Zatímco Tengri dává člověku nebeskou duši, Umay mu dává v lůně matky fyzické tělo.</li>
+                </ul>
+            </section>
+
+            <section id="tri-svety">
+                <h2>Tři světy</h2>
+                <p>Kosmologie tří světů</p>
+                <p>Vesmír je v tengrismu vnímán jako živý, propojený organismus rozdělený do tří sfér. O osudu lidské duše a rovnováze celého bytí rozhoduje trojice nejvyšších božstev spolu s osudem samotné přírody.</p>
+                
+                <h3>1. Nebe: Ucmag (Horní svět)</h3>
+                <p>Ucmag je říší světla, čistoty a domovem nebeských božstev.</p>
+                <ul>
+                    <li><strong>Struktura:</strong> Nebe je rozděleno do 7 hierarchických částí (úrovní). Čím čistší duše je, do tím vyšší úrovně stoupá.</li>
+                    <li><strong>Podoba:</strong> Ucmag nevypadá jako sterilní chrám, ale jako dokonalá, čistá a nedotčená příroda. Jsou zde průzračné řeky, nekonečné zelené stepi a posvátné lesy, kde duše žijí v absolutním pokoji.</li>
+                </ul>
+
+                <h3>2. Hmotný svět (Střední svět)</h3>
+                <p>Náš viditelný svět. Místo, kde lidé dostávají šanci žít, tvořit a svým chováním prokazovat úctu k řádu vesmíru. Je to křižovatka, kde se rozhoduje o budoucím osudu naší duše.</p>
+
+                <h3>3. Podsvětí: Tamag (Dolní svět)</h3>
+                <p>Tamag je říší očištění, transformace a duchů předků, kterému vládne Erlik Chán.</p>
+                <ul>
+                    <li><strong>Struktura:</strong> Stejně jako nebe, i podsvětí má 7 částí (úrovní), které odpovídají závažnosti lidských provinění.</li>
+                    <li><strong>Spravedlnost a očista:</strong> Tamag není místem věčného zatracení (jako křesťanské peklo). Slouží jako duchovní nápravné zařízení. Jakmile duše v Tamagu po určité době odčiní své prohřešky a očistí se, nakonec vystoupí vzhůru do Nebe Ucmag.</li>
+                </ul>
+
+                <h3>Posmrtný soud a trojice božstev</h3>
+                <p>Po smrti člověka se jeho duše ocitá před nejvyšším soudem. O tom, kam duše odejde, rozhodují společně tři hlavní síly vesmíru:</p>
+                <ul>
+                    <li><strong>Tengri:</strong> Hodnotí, zda člověk žil v souladu s vesmírným řádem a zda správně nakládal se svou životní silou (Kut).</li>
+                    <li><strong>Umay:</strong> Posuzuje, jak se člověk choval k Zemi, přírodě, rodině a všemu živému.</li>
+                    <li><strong>Erlik:</strong> Vládce podsvětí, který váží lidské hříchy a určuje úroveň v Tamagu, kde si duše musí své chyby odpykat.</li>
+                </ul>
+
+                <h3>Strom života: Osa vesmíru a ekologické varování</h3>
+                <p>Všechny tři světy (Ucmag, Hmotný svět i Tamag) drží pohromadě a vertikálně propojuje Strom života (v některých tradicích nazývaný Baiterek). Jeho kořeny sahají hluboko do podsvětí Tamagu, kmen prochází naším hmotným světem a koruna se rozpíná v 7 úrovních nebe Ucmag.</p>
+                
+                <div class="warning-box">
+                    <p>⚠️ <strong>Zásadní varování Stromu života</strong></p>
+                    <p>Strom života není nezničitelný – je přímo napojen na chování lidstva ve Středním světě.</p>
+                    <p>Pokud lidé budou ničit přírodu, kácet posvátné lesy, špinit řeky a žít bez úcty k planetě, Strom života bude slábnout. Kdyby lidská chamtivost zašla tak daleko, že by Strom zahynul, znamenalo by to okamžitý konec a kolaps všech tří světů najednou. Ekologie je tak v tengrismu otázkou přežití celého vesmíru.</p>
+                </div>
+
+                <!-- INTERAKTIVNÍ KOSMOLOGIE - VIZUALIZACE 15 VRSTEV PODÉL STROMU ŽIVOTA -->
+                <h3 style="text-align: center; margin-top: 50px;">Interaktivní Vizualizace Kosmologie (Tři světy & 15 vrstev)</h3>
+                <p style="text-align: center; font-style: italic; margin-bottom: 20px;">Kliknutím na jednotlivé vrstvy podél Stromu života (Baiterek) si můžete zobrazit podrobné informace.</p>
+
+                <div class="cosmos-tree-widget">
+                    <!-- HORNÍ SVĚT -->
+                    <div class="world-section-title world-upper">A. HORNÍ SVĚT: Ucmag (7 úrovní nebe)</div>
+                    
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>1. Úroveň nebe (Nejvyšší): Věčné Modré Nebe</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Nekonečný, průzračně modrý nebeský prostor bez jediného mraku, zalitý čistým nebeským světlem.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Tengri (Věčné modré nebe).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Nejvyšší nebeská sféra. Stav absolutní harmonie, svobody a čistého vědomí bez hranic a lidského ega.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>2. Úroveň nebe: Posvátná Velehora Nebe (Sféra Blesku)</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Majestátní, sněhem pokryté štíty nebeských hor (jako nebeský Khan Tengri), nad nimiž tancují zlaté blesky a polární záře.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Kayra Han (Prvotní bůh stvoření), Savi-Tengri (Duch nebeského ohně).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Blesk vyvěrající z těchto vrcholů je vnímán jako požehnání a přímý dotek 2. nebe se Středním světem.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>3. Úroveň nebe: Hvězdná Step a Šamanské Háje</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Nekonečná noční step pod průzračnou hvězdnou oblohou s posvátným hájem nebeských modřínů a bříz, jejichž listy svítí.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Cholpan-Tengri (Strážce hvězd), duchové předků a velikých šamanů (Bäksi).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Každá hvězda nad touto stepí je duší (Suns) člověka.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>4. Úroveň nebe: Zlatá Sluneční Step a Řeky Života</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Sluncem zalitá step s vysokou trávou, divokými květy a průzračnými řekami, kde zvířata žijí v mírném soužití.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Koyash-Tengri (Bůh Slunce), Mergen-Tengri (Bůh moudrosti a lovu).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Domov duší spravedlivých lidí a těch, kdo celý život chránili prameny, stromy a zvířata.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>5. Úroveň nebe: Měsíční Jezero a Světové Lůno</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Poklidné nebeské jezero se stříbrnou hladinou obklopené kvetoucími horskými loukami.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Umay Ana (Matka přírody a dětí), Ay-Tengri (Bůh Měsíce).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Sídlí zde duše dosud nenarozených dětí a duše předků.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>6. Úroveň nebe: Nespoutané Větrné Pláně a Čisté Prameny</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Divoká náhorní plošina, kde vane hřejivý nebeský vítr vonící po pelyňku a vyvěrají průzračné prameny.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Zashin-Tengri (Vládce větrů), Su-Tengri (Duchové čistých vod).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Větrný proud a nebeská voda smývají z duší prach pozemských starostí a smutku.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>7. Úroveň nebe (Nejnižší): Mlžné Hřebeny a Nebeská Rosa (Brána Ucmagu)</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Horské průsmyky a zelená údolí zahalená do ranní mlhy a stříbrné rosy na hranici s pozemskými horami.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Uch-Kurbustan (ochranní duchové nebes), strážci nebeské brány.</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Zde se očištěná duše poprvé nadechne nebeského vzduchu, než vstoupí výše.</p>
+                        </div>
+                    </div>
+
+                    <!-- STŘEDNÍ SVĚT -->
+                    <div class="world-section-title world-middle">B. STŘEDNÍ SVĚT: Hmotný svět (Kmen Stromu)</div>
+                    
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>Střední svět: Hmotný svět (Kmen Stromu)</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Náš viditelný svět – stepi, hory, lesy, oceány a lidská obydlí.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Yer-Sub (Duchové země a vody), Eee-ler (Místní duchové přírody), lidstvo.</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Křižovatka a zkušební pole. Činy vykonané vůči přírodě a lidech přímo určují sílu duše (Sulde) a její posmrtnou cestu.</p>
+                        </div>
+                    </div>
+
+                    <!-- DOLNÍ SVĚT -->
+                    <div class="world-section-title world-lower">C. DOLNÍ SVĚT: Tamag (7 úrovní Podsvětí)</div>
+                    
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>1. Úroveň podsvětí (Nejvyšší): Sféra Stínů a Lítosti</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Šedivá, mlžná krajina plná bezlistých stromů a studených pramenů těsně pod povrchem Země.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Körmös (strážci prahu podsvětí a průvodci duší).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Zde duše vidí zrcadlení svých sobeckých skutků a prožívají lítost nad tím, komu ublížily.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>2. Úroveň podsvětí: Sféra Zbloudilých duší</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Pustina plná kamenných suťovisek a vyschlých koryt řek, kde duje chladný vichr.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Sluhové Erlik Chána (Erlik-Kizilari).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Určena pro ty, kdo za života žili bez úcty k předkům. Očišťují se hledáním cesty v temnotě.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>3. Úroveň podsvětí: Sféra Bažin a Chamtivosti</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Tmavošedá močálovitá krajina plná husté blátivé vody, ze které nelze snadno vystoupit.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Duchové lakoty a chamtivosti.</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Bláto symbolizuje tíhu majetku. Duše si zde uvědomují bezvýznamnost hmotných věcí.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>4. Úroveň podsvětí: Sféra Ledových řek (Sféra Hněvu)</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Zamrzlá temná údolí protkaná řekou z tekutého ledu (Toybodym) s třeskutým mrazem.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Yaman-Körmös (zlí duchové zrady a sváru).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Mráz představuje chlad lidského srdce. Ti, kdo rozsévali nenávist, zde překonávají chlad vlastní duše.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>5. Úroveň podsvětí: Sféra Temných lesů a Klamu</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Neprůstupný černý taigový les bez korún stromů se sírovými výpary.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Ochránci podzemních zvířat a Erlikovi vojevůdci.</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Pro lidi, kteří lhaním a klamem ničili komunity. Bloudí lesem, dokud nenajdou odvahu k pravdě.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>6. Úroveň podsvětí: Sféra Černého Ohně (Ničení Přírody)</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Krajina spálené země, sopky a řeky z černého, hustého popela.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Nejpřísnější soudci podsvětí podřízení Erlikovi.</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Pro ty, kdo vědomě ničili posvátná místa, káceli posvátné háje nebo otrávili vodní zdroje.</p>
+                        </div>
+                    </div>
+
+                    <div class="cosmos-node">
+                        <div class="cosmos-node-header">
+                            <span>7. Úroveň podsvětí (Nejnižší): Trůn Erlik Chána (Dno Tamagu)</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="cosmos-node-content">
+                            <p><strong>Popis:</strong> Podzemní prostor na samotném dně podsvětí u nejhlubších kořenů Stromu života.</p>
+                            <p><span class="cosmos-detail-label">Bytosti:</span> Erlik Chán (Vládce podsvětí a pán posmrtného soudu).</p>
+                            <p><span class="cosmos-detail-label">Zajímavost:</span> Nejhlubší místo vesmíru. Erlik zde sedí na trůnu z černého medvěda. Po plném očištění od vinn je duše propuštěna a stoupá zpět do Ucmagu.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="duse">
+                <h2>Duše</h2>
+                <p>V tengristické tradici je pojetí lidského vědomí nesmírně komplexní. Člověk není tvořen pouze jedním tělem a jednou duší. Každá živá bytost v sobě nese tři odlišné duše (či duchovní složky), z nichž každá má jiný původ, jinou funkci během života a zcela jiný osud po smrti.</p>
+                <p>Zde je podrobný přehled této fascinující anatomie lidského ducha:</p>
+                
+                <h3>1. Amin (Duše dechu a života)</h3>
+                <p>Amin je biologická životní síla, která je úzce spjata s fyzickým tělem.</p>
+                <ul>
+                    <li><strong>Původ a funkce:</strong> Tuto duši dává člověku (a všem živým tvorům) bohyně Umay při početí a zrození. Projevuje se jako dech, tělesné teplo a tlukot srdce. Je to síla, která oživuje hmotu.</li>
+                    <li><strong>Po smrti:</strong> V momentě, kdy tělo zemře a člověk naposledy vydechne, duše Amin zaniká, respektive se vrací zpět do přírody (k bohyni Umay), aby dala život novým stvořením. Reinkarnuje se v rámci přírodního cyklu.</li>
+                </ul>
+
+                <h3>2. Suns (Duše vědomí a emocí)</h3>
+                <p>Suns je individuální duše, která nese naši osobnost, vzpomínky, inteligenci, city a ego. Je to to, co vnímáme jako své „já“.</p>
+                <ul>
+                    <li><strong>Původ a funkce:</strong> Tuto duši sesílá Tengri z nebes. Během spánku nebo v šamanském tranzu může Suns dočasně opustit tělo a cestovat (což se projevuje jako sny).</li>
+                    <li><strong>Po smrti:</strong> To je ta část duše, která odchází k posmrtnému soudu před trojici božstev (Tengri, Umay, Erlik). Pokud má na sobě prohřešky, sestupuje do 7 úrovní podsvětí (Tamagu), kde se očišťuje. Jakmile své viny odčiní, vystoupí do nebeského světa (Ucmag).</li>
+                </ul>
+
+                <h3>3. Sulde (Duše identity a síly)</h3>
+                <p>Sulde je nejvíce fascinující složka. Je to duše spojená s osobní silou, charismatem, ctí, odvahou a samotnou esencí rodu. Je pevně spjata s kostmi (zejména s klíční kostí nebo lebkou) a s vlasy.</p>
+                <ul>
+                    <li><strong>Původ a funkce:</strong> Je to jakýsi duchovní otisk, který člověk během života aktivně spoluvytváří svými činy, odvahou a morálkou. Síla Sulde určuje, jak moc je člověk v životě úspěšný a jak silnou má vůli.</li>
+                    <li><strong>Po smrti a kult předků:</strong> Na rozdíl od Suns, která odchází na soud, duše Sulde neodchází do jiných světů. Zůstává v našem Hmotném světě a stává se duchem předka.</li>
+                </ul>
+
+                <h3>Význam pro kult předků</h3>
+                <p>Právě díky duši Sulde dává v tengrismu kult předků hluboký smysl.</p>
+                <ul>
+                    <li>Když váš dědeček nebo prababička zemřou, jejich Suns sice odešla na duchovní cestu do Ucmagu, ale jejich Sulde zůstává nablízku své rodině a zemi. Stává se ochranným duchem rodu.</li>
+                    <li>Lidé ji mohou volat na pomoc v těžkých chvílích.</li>
+                    <li>Usazuje se v rituálních předmětech, rodových symbolech nebo na posvátných místech přírody (např. u kamenů Ovoo).</li>
+                    <li>Pokud rod žije čestně, Sulde jejich předků je posiluje. Pokud potomci dělají hanbu, Sulde předků slábne a rod ztrácí ochranu.</li>
+                </ul>
+            </section>
+            
+             <section id="yersu">
+                <h2>Yersu</h2>
+                <p>V tengristickém učení zaujímají <strong>Yersu</strong> nezastupitelné místo. Nejde o jednu konkrétní bytost, ale o rozsáhlý a rozmanitý systém duchů, kteří oživují a chrání samotnou Zemi (Střední svět). Jsou to přírodní duchové, zosobnění hor, řek, lesů, jezer a samotných přírodních sil, s nimiž je člověk v neustálém kontaktu a se kterými musí žít v harmonii.</p>
+
+                <h3>Přírodní duchové yersu</h3>
+                <p>Yersu doslova znamená "Země-Voda" a tento termín označuje duchy, kteří jsou s těmito živly a celou pozemskou přírodou neoddělitelně spjati.</p>
+                <ul>
+                    <li><strong>Strážci rovnováhy:</strong> Nejsou to abstraktní božstva dlící v nebesích, ale blízcí, lokální duchové, kteří obývají konkrétní místa ve Středním světě. Mají za úkol chránit svěřenou část přírody a dohlížet na to, aby lidé nenarušovali její přirozený řád.</li>
+                    <li><strong>Vztah s lidmi:</strong> Jsou velmi citliví na lidské chování. Pokud člověk vstupuje do přírody s úctou, chová se k ní šetrně a přináší drobné obětiny (například uváže stužku na posvátný strom nebo kámen, nebo obětuje trochu mléka či tuku zvířatům), Yersu mu mohou požehnat, chránit ho na cestách a zajistit mu hojnost.</li>
+                    <li><strong>Důsledky neúcty:</strong> Pokud se však člověk k přírodě chová bez respektu – loví více, než potřebuje k přežití, znečišťuje prameny, nesmyslně kácí stromy nebo se v přírodě chová hlučně a arogantně – Yersu se mohou rozhněvat. Jejich hněv se může projevit jako neúspěch v lovu, nemoci, přírodní katastrofy nebo bloudění a neštěstí.</li>
+                </ul>
+
+                <h3>Z duší v Ucmag si Tengri vybere některé duše které se stanou přírodními duchy yersu</h3>
+                <p>Tengrismus nabízí fascinující pohled na původ těchto duchů. Jak se vlastně v přírodě objevují?</p>
+                <ul>
+                    <li><strong>Zrození z čistoty:</strong> Zatímco lidské duše, které prošly očištěním a dosáhly nebeské sféry Ucmag, tam mohou spočinout v míru, <strong>Tengri, Věčné modré nebe, z nich může vybrat ty nejčistší a nejušlechtilejší duše a pověřit je novým, vznešeným posláním</strong>.</li>
+                    <li><strong>Návrat na Zemi s posláním:</strong> Tyto vybrané duše se nestávají bohy, ale jsou vyslány zpět do Středního světa, aby se staly Yersu – duchovními strážci konkrétních míst. Stávají se duchem posvátné hory, jezera, starého lesa nebo silného pramene.</li>
+                    <li><strong>Živá a propojená příroda:</strong> Tento koncept zdůrazňuje, že celá příroda je doslova prodchnuta duchovní podstatou a že <strong>duchové přírody a duše předků jsou úzce provázáni</strong>. Hora či řeka tak může být oživována a chráněna duší dávného, výjimečného člověka, který se po svém nebeském spočinutí vrátil na Zemi, aby na ni dohlížel z pověření samotného Tengriho.</li>
+                </ul>
+            </section>
+
+            <section id="praxe">
+                <h2>Praxe pro úplné začátečníky</h2>
+                <h3>Jak začít s praxí v moderním světě</h3>
+                <p>Následovat tuto prastarou cestu nevyžaduje život ve stepi. Nejde o vnější kulisy, ale o váš vnitřní postoj. Praktikovat můžete začít hned teď, a to i uprostřed rušného města:</p>
+                <ul>
+                    <li><strong>Zastavte se a pozorujte:</strong> Najděte si denně chvíli na propojení s přírodou. Vnímejte nebe, vítr a slunce. Uvědomte si, že jste neoddělitelnou součástí světa.</li>
+                    <li><strong>Respektujte vše živé:</strong> Přistupujte k jídlu i vodě s vděčností. Neplýtvejte, chraňte Zemi a pamatujte, že vše v přírodě má svou duši.</li>
+                    <li><strong>Uctěte své předky:</strong> Věnujte jim tichou vzpomínku, například u zapálené svíčky. Poděkujte za život a sílu, kterou vám předali. Jejich odkaz vás chrání, pokud žijete čestně.</li>
+                    <li><strong>Vyjadřujte vděčnost:</strong> Mluvte k nebesům jednoduše a vlastními slovy. Upřímná myšlenka či modlitba ze srdce je důležitější než jakékoliv složité rituály.</li>
+                    <li><strong>Hledejte vnitřní rovnováhu:</strong> Žijte v souladu se svým svědomím. V těžkých situacích jednejte s klidem jako pevně zakořeněný strom a vyhýbejte se nespravedlnosti.</li>
+                </ul>
+                <p>Tato cesta není o slepé poslušnosti pravidlům, ale o hlubokém pochopení našeho spojení s vesmírem. Je to cesta svobody, respektu a rovnováhy.</p>
+            </section>
+
+            <section id="modlitby">
+                <h2>Modlitby</h2>
+                
+                <div class="prayer-card">
+                    <p>Ctihodný věčně nebeský Otče Tengri,<br>
+                    děkuji Ti za udělení vzácného daru kterým je život.<br>
+                    Vzývám Tě jako Toho kdo je nekonečně milující a velice spravedlivý.<br>
+                    Ty jsi Ten kdo je Vesmír samotný.<br>
+                    Ty jsi Ten kdo je všude kolem mě.<br>
+                    Velebná Svatá manželko Tengriho Umay,<br>
+                    děkuji Ti za Tvou mateřskou lásku a za to že mohu žít tento krásný život.<br>
+                    Vzývám Tě jako Matku veškeré přírody.<br>
+                    Ty jsi Ta kdo je přítomna v každém nádechu i výdechu který mě udržuje živého.<br>
+                    Ty jsi Ta kdo chrání nejmladší bytosti kterými jsou děti a mláďata.<br>
+                    Chválá Vám oběma jenž jste Božský základ všeho.</p>
+                </div>
+
+                <div class="prayer-card">
+                    <p>Nekonečně Milující Otče Tengri,<br>
+                    prosím Tě o duchovní požehnání pro člověka za kterého se teď modlím s jeho souhlasem.<br>
+                    Velice Tě s mou vírou žádám a prosím abys pomohl danému člověku bojovat s touto nemocí.<br>
+                    Je-li Tvá Svatá Vůle ho uzdravit tak se modlím abys ho uzdravil z toho co ho trápí.<br>
+                    Chvála Tobě Nejvyšší Pane Tengri.</p>
+                </div>
+
+                <div class="prayer-card">
+                    <p>Králi Bohů Pane Tengri,<br>
+                    obracím se k Tobě v půlce mé dnešní cesty<br>
+                    abych Ti vyjádřil obdiv za dosavadní svatý a požehnaný den.<br>
+                    Prosím Tě s radostí o všechna důležitá požehnání pro zbytek dnešního dne.<br>
+                    Jsem rád že skrze jednu ze tří duší mohu dobře dýchat a cítit celý svět.<br>
+                    Ty jsi Ten Svrchovaný Vládce.<br>
+                    Chvála Tobě a děkuji za krásný zbytek dne.</p>
+                </div>
+
+                <div class="prayer-card">
+                    <p>Blahoslavený Otče nebes Tengri,<br>
+                    jenž jsi Ta Věčná modrá obloha!<br>
+                    Chválíme Tvé jméno nebeské jenž sídlí na velehoře Khan Tengri!<br>
+                    Ty jenž jsi Spravedlivý rodič lidstva i všech bytostí a přírody!<br>
+                    Opravdu velmi chválíme Tvojí Nebeskou všemoudrost!<br>
+                    My jenž jsme Tvými dětmi slibujeme usilovat o mír v přírodě!<br>
+                    Ctíme Tě jako Prapůvod všeho!<br>
+                    Chvála Tengrimu!</p>
+                </div>
+            </section>
+
+            <!-- SEKCE KURZ ZÁKLADY TENGRISMU -->
+            <section id="kurz">
+                <h2>Kurz Základy Tengrismu</h2>
+                <p>Vítejte v kurzu Základy tengrismu. Následující videolekce vás provedou základy této prastaré duchovní tradice, její kosmologií, filozofií a praktickým prožíváním.</p>
+                
+                <h3>1. Lekce</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/rIHYql43R4k" title="Kurz Základy Tengrismu - Lekce 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <h3>2. Lekce</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/1bAE9uDSnBQ" title="Kurz Základy Tengrismu - Lekce 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <h3>3. Lekce</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/CHQrr23zZOk" title="Kurz Základy Tengrismu - Lekce 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <h3>4. Lekce</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/r-crqVR_66w" title="Kurz Základy Tengrismu - Lekce 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <h3>5. Lekce</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/UDNTY0HfWVc" title="Kurz Základy Tengrismu - Lekce 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <h3>6. Lekce</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/iTGyvxXxUPM" title="Kurz Základy Tengrismu - Lekce 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <h3>7. Lekce</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/gfVEDOV-ICc" title="Kurz Základy Tengrismu - Lekce 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <h3>8. Lekce</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ialj38GWdlg" title="Kurz Základy Tengrismu - Lekce 8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="odkazy">
+                <h2>Odkazy</h2>
+                <div class="links-container">
+                    <a href="https://en.wikipedia.org/wiki/Tengrism" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/wiki/Tengrism</a>
+                    <a href="https://tengriism.org" target="_blank" rel="noopener noreferrer">https://tengriism.org</a>
+                    <a href="https://grokipedia.com/page/Tengrism" target="_blank" rel="noopener noreferrer">https://grokipedia.com/page/Tengrism</a>
+                    <a href="https://en.wikipedia.org/wiki/Tengri" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/wiki/Tengri</a>
+                    <a href="https://en.wikipedia.org/wiki/Umay" target="_blank" rel="noopener noreferrer">https://en.wikipedia.org/wiki/Umay</a>
+                    <a href="https://cs.wikipedia.org/wiki/Tengrismus" target="_blank" rel="noopener noreferrer">https://cs.wikipedia.org/wiki/Tengrismus</a>
+                    <a href="https://www.reddit.com/r/tengrism/" target="_blank" rel="noopener noreferrer">https://www.reddit.com/r/tengrism/</a>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/bRvgPYica6U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                
+                <h3 style="margin-top: 30px; text-align: center;">Doporučené video</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/FTufvfcRb9g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="obrazky">
+                <h2>Obrázky</h2>
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <img src="Orkhon.png" alt="Orkhon" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                    <p style="margin-top: 10px; font-size: 0.95rem;">
+                        Zdroj: <a href="https://commons.wikimedia.org/wiki/File:Orkhon.png" target="_blank" rel="noopener noreferrer" style="color: var(--eternal-blue); font-weight: bold; text-decoration: none;">Wikimedia Commons</a><br>
+                        <a href="https://commons.wikimedia.org/wiki/File:Orkhon.png" target="_blank" rel="noopener noreferrer" style="color: var(--sky-blue); font-size: 0.85rem; word-break: break-all;">https://commons.wikimedia.org/wiki/File:Orkhon.png</a>
+                    </p>
+                </div>
+                
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <img src="Peak_of_Khan_Tengri_at_sunset.jpg" alt="Peak of Khan Tengri at sunset" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                    <p style="margin-top: 10px; font-size: 0.95rem;">
+                        Autor: <strong>Simon Garbutt</strong><br>
+                        Zdroj: <a href="https://commons.wikimedia.org/wiki/File:Peak_of_Khan_Tengri_at_sunset.jpg" target="_blank" rel="noopener noreferrer" style="color: var(--eternal-blue); font-weight: bold; text-decoration: none;">Wikimedia Commons</a><br>
+                        <a href="https://commons.wikimedia.org/wiki/File:Peak_of_Khan_Tengri_at_sunset.jpg" target="_blank" rel="noopener noreferrer" style="color: var(--sky-blue); font-size: 0.85rem; word-break: break-all;">https://commons.wikimedia.org/wiki/File:Peak_of_Khan_Tengri_at_sunset.jpg</a>
+                    </p>
+                </div>
+                
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="Fotka.jpg" alt="Vlastní fotografie" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                    <p style="margin-top: 10px; font-size: 0.95rem;">
+                        Autor a zdroj: <strong>Vlastní fotka majitele webu</strong>
+                    </p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="cookie-banner">
+        <div class="cookie-text">
+            <strong>Ochrana soukromí a Cookies</strong><br>
+            Tento web používá k poskytování služeb, personalizaci obsahu a analýze návštěvnosti soubory cookies. Používáním tohoto webu s tím souhlasíte v souladu s legislativou EU a ČR.
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn reject" id="cookie-reject">Pouze nezbytné</button>
+            <button class="cookie-btn" id="cookie-accept">Přijmout vše</button>
+        </div>
+    </div>
+    
+    <a href="#" id="back-to-top" title="Zpět nahoru">↑</a>
+
+    <script>
+        // Logika pro Cookies lištu
+        document.addEventListener("DOMContentLoaded", function() {
+            const cookieBanner = document.getElementById("cookie-banner");
+            const btnAccept = document.getElementById("cookie-accept");
+            const btnReject = document.getElementById("cookie-reject");
+
+            // Kontrola, zda uživatel již dříve zvolil
+            if (!localStorage.getItem("tengrismus_cookie_consent")) {
+                // Malé zpoždění pro plynulou animaci po načtení
+                setTimeout(() => {
+                    cookieBanner.classList.add("show");
+                    document.body.classList.add('cookie-banner-active');
+                }, 1000);
+            }
+
+            // Funkce pro skrytí a uložení volby
+            function handleConsent(choice) {
+                localStorage.setItem("tengrismus_cookie_consent", choice);
+                cookieBanner.classList.remove("show");
+                document.body.classList.remove('cookie-banner-active');
+            }
+
+            btnAccept.addEventListener("click", function() {
+                handleConsent("all");
+            });
+
+            btnReject.addEventListener("click", function() {
+                handleConsent("essential");
+            });
+            
+            // Logika pro tlačítko "Zpět nahoru"
+            const backToTopBtn = document.getElementById("back-to-top");
+
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add("show");
+                } else {
+                    backToTopBtn.classList.remove("show");
+                }
+            });
+            
+            backToTopBtn.addEventListener("click", function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+
+            // Interaktivní komponenta: Kosmologie (rozbalování vrstev)
+            const cosmosNodes = document.querySelectorAll('.cosmos-node');
+            cosmosNodes.forEach(node => {
+                const header = node.querySelector('.cosmos-node-header');
+                header.addEventListener('click', () => {
+                    node.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
